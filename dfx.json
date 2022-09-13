@@ -1,0 +1,7 @@
+{
+  "canisters": {
+    "counter": {
+      "main": "src/increment_counter.mo"
+    }
+  }
+}
