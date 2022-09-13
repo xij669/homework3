@@ -1,3 +1,5 @@
+import Text "mo:base/Text";
+
 // Create a simple Counter actor.
 actor Counter {
   stable var currentValue : Nat = 0;
@@ -15,5 +17,28 @@ actor Counter {
   // Write an arbitrary value with a set function.
   public func set(n: Nat) : async () {
     currentValue := n;
+  };
+
+  type HttpRequest = {
+    body : [Nat];
+    headers: [HeaderField];
+    method: Text;
+    url: Text;
+  };
+
+  type HttpResponse = {
+    body: [Nat];
+    headers: [HeaderField];
+    status_code: Nat16;
+  };
+
+  type HeaderField = (Text, Text);
+
+  public query func http_request(arg: HttpRequest) : async HttpResponse {
+    {
+      body = currentValue;
+      headers = [];
+      status_code = 200;
+    }
   };
 }
